@@ -1,0 +1,17 @@
+{
+  "UserConfig": {
+    "Namespaces": [
+      {
+        "Name": "servicebus",
+        "Queues": [
+          {
+            "Name": "webhook-receive"
+          }
+        ]
+      }
+    ],
+    "Logging": {
+      "Type": "Console"
+    }
+  }
+}

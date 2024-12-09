@@ -1,0 +1,12 @@
+{
+  "name": "Blog Post Dev Container",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "forwardPorts": [
+    7071
+  ],
+  "containerEnv": {
+    "SERVICE_BUS_CONNECTION_STRING": "Endpoint=ampq://servicebus:5672;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;",
+    "SERVICE_BUS_QUEUE_NAME": "webhook-receive"
+  }
+}

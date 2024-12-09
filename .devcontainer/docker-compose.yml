@@ -1,0 +1,29 @@
+services:
+  app:
+    build: .
+    working_dir: /home
+    volumes:
+      - ..:/home
+    ports:
+      - "7071:7071"
+    depends_on:
+      - servicebus
+  servicebus:
+    image: mcr.microsoft.com/azure-messaging/servicebus-emulator
+    depends_on:
+      - sqledge
+    volumes:
+      - ./service-bus-config.json:/ServiceBus_Emulator/ConfigFiles/Config.json
+    environment:
+      - ACCEPT_EULA=Y
+      - SQL_SERVER=sqledge
+      - MSSQL_SA_PASSWORD=Str0ngP@ssw0rd!2023
+    ports:
+      - "5672:5672"
+  sqledge:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Str0ngP@ssw0rd!2023
+    ports:
+      - "1433:1433"
